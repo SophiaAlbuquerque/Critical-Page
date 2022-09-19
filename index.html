@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Critical</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="responsive.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+
+    <script src="scripts/utils.js"></script>
+
+    <script src="scripts/habilidades.js"></script>
+    <script src="scripts/pv-pa.js"></script>
+    <script src="scripts/ca.js"></script>
+    <script src="scripts/resistencias.js"></script>
+    <script src="scripts/info.js"></script>
+    <script src="scripts/pericias.js"></script>
+    <script src="scripts/ataques.js"></script>
+    <script src="scripts/save-load.js"></script>
+
+    <script src="scripts/hiden.js"></script>
+  </head>
+
+  <body>
+    <input type="checkbox" id="check" />
+
+    <!-- Header area start-->
+
+    <header>
+      <label for="check">
+        <i class="fa-sharp fa-solid fa-bars" id="sidebar_btn"></i>
+      </label>
+
+      <div class="left_area">
+        <h3>Critical</h3>
+      </div>
+      <div class="right_area">
+        <a href="#" class="logout_btn">Logout</a>
+      </div>
+    </header>
+    <!-- header area end -->
+
+    <!-- sidebar start -->
+    <div class="sidebar">
+      <div class="profile">
+        <img src="./imagens/bardo.png" class="profile_image" alt="#" />
+        <h4>Bardo</h4>
+
+        <img src="./imagens/poção vermelha.png" id="potion1" alt="#" />
+        <span id="vida">VIDA</span> <span id="qtd_v">12/12</span>
+
+        <img src="./imagens/poção azul.png" id="potion2" alt="#" />
+        <span id="mana">MANA</span> <span id="qtd_m">4/4</span>
+      </div>
+
+      <a href="#">
+        <img src="./imagens/espadinha.png" alt="#" class="icon" />
+        <span>Poderes</span></a
+      >
+      <a href="#">
+        <img src="./imagens/mochila.png" alt="#" class="icon" />
+        <span>Inventário</span></a
+      >
+      <a href="#">
+        <img src="./imagens/elmo.png" alt="#" class="icon" />
+        <span>Personagens</span></a
+      >
+      <a href="#">
+        <img src="./imagens/mapa.png" alt="#" class="icon" />
+        <span>Mapas</span></a
+      >
+      <a href="#">
+        <img src="./imagens/Bigorna.png" alt="#" class="icon" />
+        <span>Configurações</span></a
+      >
+    </div>
+
+    <!-- sidebar end-->
+
+    <div class="content">
+      <main>
+        <div class="buttons-ficha">
+          <button>Ataques</button>
+          <button>Magias</button>
+          <button id="show-or-hiden">Perícias</button>
+        </div>
+
+        <div id="page">
+          <div style="margin-top: 1rem">
+            <div id="info" style="margin-bottom: 1.5rem">
+              <div class="info-block">
+                <div class="info-input-block">
+                  <input type="text" id="nome" onchange="updateInfo()" />
+                  <label for="nome">Nome do Personagem</label>
+                </div>
+
+                <div class="info-input-block">
+                  <input type="text" id="player" />
+                  <label for="player">Nome do Jogador</label>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="info-input-block">
+                  <input type="text" id="raca" />
+                  <label for="raca">Raça</label>
+                </div>
+
+                <div class="info-input-block">
+                  <input type="text" id="classe" />
+                  <label for="classe">Classe</label>
+                </div>
+
+                <div class="info-input-block" style="max-width: 5rem">
+                  <input
+                    type="number"
+                    id="nivel"
+                    step="1"
+                    value="1"
+                    onchange="updateInfo(); updateTodasPericias()"
+                  />
+                  <label for="classe">Nível</label>
+                </div>
+
+                <div class="info-input-block" style="max-width: 8rem">
+                  <input type="text" id="tendencia" />
+                  <label for="tendencia">Tendência</label>
+                </div>
+              </div>
+
+              <div class="info-block">
+                <div class="info-input-block">
+                  <input type="text" id="sexo" style="max-width: 10rem" />
+                  <label for="sexo">Sexo</label>
+                </div>
+
+                <div class="info-input-block" style="max-width: 6rem">
+                  <input type="number" id="idade" step="1" value="16" />
+                  <label for="idade">Idade</label>
+                </div>
+
+                <div class="info-input-block">
+                  <input type="text" id="divindade" />
+                  <label for="divindade">Divindade</label>
+                </div>
+
+                <div class="info-input-block">
+                  <input type="text" id="tamanho" />
+                  <label for="tamanho">Tamanho</label>
+                </div>
+
+                <div class="info-input-block" style="max-width: 8rem">
+                  <input
+                    type="number"
+                    id="deslocamento"
+                    step="1.5"
+                    value="1.5"
+                    onchange="updateInfo()"
+                  />
+                  <label for="deslocamento">Deslocamento</label>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div id="habilidades" style="margin-right: 1.5rem">
+                <table>
+                  <tr>
+                    <th scope="col">Habilidade</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Modificador</th>
+                  </tr>
+                  <tr>
+                    <td>FOR</td>
+                    <td>
+                      <input
+                        type="number"
+                        id="hab-for"
+                        value="10"
+                        onchange="updateHabilidades('for'); updateTodasPericias(); updateAtaques()"
+                      />
+                    </td>
+                    <td>
+                      <input type="text" id="mod-for" value="0" readonly />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>DES</td>
+                    <td>
+                      <input
+                        type="number"
+                        id="hab-des"
+                        value="10"
+                        onchange="updateHabilidades('des'); updateCa(); updateResistencias(); updateTodasPericias(); updateAtaques()"
+                      />
+                    </td>
+                    <td>
+                      <input type="text" id="mod-des" value="0" readonly />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CON</td>
+                    <td>
+                      <input
+                        type="number"
+                        id="hab-con"
+                        value="10"
+                        onchange="updateHabilidades('con'); updateResistencias(); updateTodasPericias()"
+                      />
+                    </td>
+                    <td>
+                      <input type="text" id="mod-con" value="0" readonly />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>INT</td>
+                    <td>
+                      <input
+                        type="number"
+                        id="hab-int"
+                        value="10"
+                        onchange="updateHabilidades('int'); updateTodasPericias()"
+                      />
+                    </td>
+                    <td>
+                      <input type="text" id="mod-int" value="0" readonly />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>SAB</td>
+                    <td>
+                      <input
+                        type="number"
+                        id="hab-sab"
+                        value="10"
+                        onchange="updateHabilidades('sab'); updateResistencias(); updateTodasPericias()"
+                      />
+                    </td>
+                    <td>
+                      <input type="text" id="mod-sab" value="0" readonly />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>CAR</td>
+                    <td>
+                      <input
+                        type="number"
+                        id="hab-car"
+                        value="10"
+                        onchange="updateHabilidades('car'); updateTodasPericias()"
+                      />
+                    </td>
+                    <td>
+                      <input type="text" id="mod-car" value="0" readonly />
+                    </td>
+                  </tr>
+                </table>
+              </div>
+
+              <div style="flex-direction: column">
+                <div id="pv-grid" style="margin-bottom: 1.5rem">
+                  <div></div>
+                  <div class="pv-header">Total</div>
+                  <div class="pv-header">Atuais</div>
+                  <div class="pv-header">Pontos de Ação</div>
+
+                  <div class="pv-text">PV</div>
+                  <input
+                    type="number"
+                    id="pv-max"
+                    value="1"
+                    onchange="updateMaxPv()"
+                  />
+                  <input
+                    type="number"
+                    id="pv-atual"
+                    value="1"
+                    onchange="updatePv()"
+                  />
+                  <input
+                    type="number"
+                    id="pa"
+                    value="1"
+                    onchange="updatePa()"
+                  />
+                </div>
+
+                <div id="ca-grid" style="margin-bottom: 1.5rem">
+                  <div></div>
+                  <div class="ca-header">Total</div>
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                  <div class="ca-header">1/2 do<br />Nível</div>
+                  <div></div>
+                  <div class="ca-header">Mod. de<br />Habilidade</div>
+                  <div></div>
+                  <div class="ca-header">Bônus de<br />Armadura</div>
+                  <div></div>
+                  <div class="ca-header">Bônus de<br />Escudo</div>
+                  <div></div>
+                  <div class="ca-header">Mod. de<br />Tamanho</div>
+                  <div></div>
+                  <div class="ca-header">Outros</div>
+                  <div></div>
+                  <div class="ca-header">Outros</div>
+
+                  <div class="ca-text">CA</div>
+                  <input type="number" id="ca-total" value="10" readonly />
+                  <div>=</div>
+                  <input
+                    type="number"
+                    value="10"
+                    onchange="updateCa()"
+                    readonly
+                  />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="ca-metade-nivel"
+                    value="0"
+                    readonly
+                  />
+                  <div>+</div>
+                  <input type="number" id="ca-mod-des" value="0" readonly />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="bonus-armadura"
+                    onchange="updateCa()"
+                    value="0"
+                    step="1"
+                  />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="bonus-escudo"
+                    onchange="updateCa()"
+                    value="0"
+                    step="1"
+                  />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="ca-mod-tamanho"
+                    onchange="updateCa()"
+                    value="0"
+                    step="1"
+                  />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="ca-outros1"
+                    onchange="updateCa()"
+                    value="0"
+                    step="1"
+                  />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="ca-outros2"
+                    onchange="updateCa()"
+                    value="0"
+                    step="1"
+                  />
+                </div>
+
+                <div id="resistencias">
+                  <div class="res-header">Resistências</div>
+                  <div class="res-header">Total</div>
+                  <div></div>
+                  <div class="res-header">1/2 do<br />Nível</div>
+                  <div></div>
+                  <div class="res-header">Mod. de<br />Habilidade</div>
+                  <div></div>
+                  <div class="res-header">Outros</div>
+
+                  <div class="res-text">Fortitude</div>
+                  <input type="number" id="res-fort-total" value="0" readonly />
+                  <div>=</div>
+                  <input
+                    type="number"
+                    id="res-fort-metade-nivel"
+                    value="0"
+                    readonly
+                  />
+                  <div>+</div>
+                  <input type="number" id="res-fort-mod" value="0" readonly />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="res-fort-outros"
+                    value="0"
+                    step="1"
+                    onchange="updateResistencias()"
+                  />
+
+                  <div class="res-text">Reflexo</div>
+                  <input type="number" id="res-ref-total" value="0" readonly />
+                  <div>=</div>
+                  <input
+                    type="number"
+                    id="res-ref-metade-nivel"
+                    value="0"
+                    readonly
+                  />
+                  <div>+</div>
+                  <input type="number" id="res-ref-mod" value="0" readonly />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="res-ref-outros"
+                    value="0"
+                    step="1"
+                    onchange="updateResistencias()"
+                  />
+
+                  <div class="res-text">Vontade</div>
+                  <input type="number" id="res-von-total" value="0" readonly />
+                  <div>=</div>
+                  <input
+                    type="number"
+                    id="res-von-metade-nivel"
+                    value="0"
+                    readonly
+                  />
+                  <div>+</div>
+                  <input type="number" id="res-von-mod" value="0" readonly />
+                  <div>+</div>
+                  <input
+                    type="number"
+                    id="res-von-outros"
+                    value="0"
+                    step="1"
+                    onchange="updateResistencias()"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <table id="ataques">
+              <tr>
+                <th class="ataq-header" scope="col">Ataques</th>
+                <th class="ataq-header" scope="col">Total</th>
+                <td></td>
+                <th class="ataq-header" scope="col">
+                  Bônus Base<br />de Ataque
+                </th>
+                <td></td>
+                <th class="ataq-header" scope="col">Mod. de<br />Habilidade</th>
+                <td></td>
+                <th class="ataq-header" scope="col">Mod. de.<br />Tamanho</th>
+                <td></td>
+                <th class="ataq-header" scope="col">Outros</th>
+              </tr>
+              <tr>
+                <td class="ataq-text">Corpo-a-corpo</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-c-total"
+                    value="0"
+                    readonly
+                  />
+                </td>
+                <td>=</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-c-bonus"
+                    value="0"
+                    step="1"
+                    onchange="updateAtaques()"
+                  />
+                </td>
+                <td>+</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-c-hab-mod"
+                    value="0"
+                    readonly
+                  />
+                </td>
+                <td>+</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-c-tam"
+                    value="0"
+                    step="1"
+                    onchange="updateAtaques()"
+                  />
+                </td>
+                <td>+</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-c-outros"
+                    value="0"
+                    step="1"
+                    onchange="updateAtaques()"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td class="ataq-text">À Distância</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-d-total"
+                    value="0"
+                    readonly
+                  />
+                </td>
+                <td>=</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-d-bonus"
+                    value="0"
+                    step="1"
+                    onchange="updateAtaques()"
+                  />
+                </td>
+                <td>+</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-d-hab-mod"
+                    value="0"
+                    readonly
+                  />
+                </td>
+                <td>+</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-d-tam"
+                    value="0"
+                    step="1"
+                    onchange="updateAtaques()"
+                  />
+                </td>
+                <td>+</td>
+                <td>
+                  <input
+                    type="number"
+                    id="ataques-d-outros"
+                    value="0"
+                    step="1"
+                    onchange="updateAtaques()"
+                  />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </main>
+
+      <aside>
+        <table id="pericias">
+          <tr>
+            <th scope="col" class="peri-header">Treinada</th>
+            <th scope="col" class="peri-header">Perícias</th>
+            <th scope="col" class="peri-header">Total</th>
+            <td></td>
+            <th scope="col" class="peri-header">Grad.</th>
+            <td></td>
+            <th scope="col" class="peri-header">Mod. de<br />Habilidade</th>
+            <td></td>
+            <th scope="col" class="peri-header">Outros</th>
+          </tr>
+        </table>
+      </aside>
+    </div>
+
+    <script src="scripts/insert-pericias.js"></script>
+  </body>
+</html>

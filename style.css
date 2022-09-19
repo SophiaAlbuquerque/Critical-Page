@@ -1,0 +1,512 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+:root {
+  --vermelho: #530900;
+  --cinza-claro: #D9D9D9;
+  --main-color: #407bff;
+  --link-color: #666666;
+  --text1: #999999;
+  --highligth-text: #333333;
+  --input-text: #555555;
+  --white-color: #FFFFFF;
+  --point-list: #CCCCCC;
+  --line-input: #D9D9D9;
+
+  font-size: 62.5%;
+  /* 1rem = 10px */
+}
+
+@font-face {
+  font-family: Alagard;
+  src: local(Alagard), url(./fontes/alagard.ttf);
+}
+
+@font-face {
+  font-family: Ancient;
+  src: local(Ancient), url(./fontes/Ancient\ Modern\ Tales.otf);
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+header {
+  position: fixed;
+  background: #530900;
+  padding: 20px;
+  width: 100%;
+  height: 20px;
+}
+
+.left_area h3 {
+
+  color: #Fff;
+  margin: 0px;
+
+  font-size: 26px;
+  font-family: Ancient;
+  font-weight: 200;
+
+
+  /*centralizando o h3*/
+  display: flex;
+  justify-content: center;
+
+}
+
+
+.logout_btn {
+  padding: 6px;
+  background: #911515;
+  text-decoration: none;
+  float: right;
+  margin-top: -30px;
+  margin-right: 40px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: 100;
+  font-family: Alagard;
+  color: white;
+  transition: 0.5s;
+  transition-property: background;
+}
+
+.logout_btn:hover {
+  background: black;
+  color: white;
+}
+
+.sidebar {
+  background: #660D0D;
+  margin-top: 60px;
+  padding-top: 30px;
+  position: fixed;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  transition: 0.5s;
+  transition-property: left;
+}
+
+.sidebar .profile_image {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+
+  margin-left: 40px;
+  margin-bottom: 10px;
+}
+
+.sidebar #potion1 {
+  position: relative;
+
+  left: 155px;
+  bottom: 150px;
+
+}
+
+.sidebar #potion2 {
+  position: relative;
+
+  left: 63px;
+  bottom: 90px;
+}
+
+.profile #mana,
+#vida {
+  color: #Ccc;
+  font-weight: 100;
+  font-size: 12px;
+}
+
+.profile #mana {
+  position: relative;
+
+  left: 85px;
+  bottom: 110px;
+}
+
+.profile #vida {
+  position: relative;
+
+  left: 175px;
+  bottom: 170px;
+}
+
+.profile #qtd_v {
+  position: relative;
+
+  left: 140px;
+  bottom: 150px;
+
+  color: white;
+  font-weight: 100;
+  font-size: 15px;
+}
+
+.profile #qtd_m {
+  position: relative;
+
+  left: 50px;
+  bottom: 90px;
+
+  color: white;
+  font-weight: 100;
+  font-size: 15px;
+}
+
+.sidebar h4 {
+  color: #ccc;
+
+  margin-top: 0;
+  margin-left: 40px;
+  margin-bottom: 20px;
+
+  font-family: Ancient;
+  font-size: 22px;
+  font-weight: 100;
+}
+
+.sidebar a {
+  color: #Fff;
+  display: block;
+  width: 100%;
+  line-height: 65px;
+  text-decoration: none;
+  padding-left: 40px;
+  box-sizing: border-box;
+  transition: 0.5s;
+  transition-property: background;
+}
+
+.sidebar span {
+  font-size: 16px;
+  font-family: Alagard;
+  font-weight: 100;
+}
+
+.sidebar a:hover {
+  background: #530900;
+}
+
+.sidebar .icon {
+  padding-right: 10px;
+  display: inline-flex;
+}
+
+label #sidebar_btn {
+  z-index: 1;
+  color: #Fff;
+  position: fixed;
+  cursor: pointer;
+  left: 15px;
+  font-size: 20px;
+  margin: 0;
+  transition: 0.5s;
+  transition-property: color;
+}
+
+label #sidebar_btn:hover {
+  color: #530900;
+
+}
+
+#check:checked~.sidebar {
+  left: -190px;
+}
+
+#check:checked~.sidebar a span {
+  display: none;
+}
+
+#check:checked~.sidebar a {
+  font-size: 20px;
+  margin-left: 170px;
+  width: 80px;
+}
+
+#check:checked~.content {
+  margin-left: 60px;
+}
+
+#check {
+  display: none;
+}
+
+.content {
+  display: flex;
+  margin-left: 250px;
+  background-color: #Fff;
+  background-position: center;
+  background-size: cover;
+  height: 100hv;
+  transition: 0.5s;
+}
+/*BUTÃO FICHA*/
+
+.buttons-ficha button{
+  border-color: var(--vermelho);
+  background-color: transparent;
+
+  border-radius: 1rem;
+  align-items: center;
+}
+
+/*TELA FICHA*/
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  height: 100vh;
+  justify-content: center;
+  margin-inline: auto;
+}
+main #page {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+main * {
+  font-family: Alagard;
+}
+main div {
+  display: flex;
+}
+main #page > div {
+  flex-direction: column;
+}
+main input {
+  font-family: Alagard;
+  outline: none;
+  text-align: center;
+}
+
+#info {
+  flex-direction: column;
+}
+#info > .info-block {
+  flex-direction: row;
+  width: 100%;
+}
+#info > .info-block > :not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+#info > .info-block > .info-input-block {
+  flex-direction: column;
+  width: 100%;
+}
+#info > .info-block > .info-input-block > :not(:last-child) {
+  margin-right: 1rem;
+}
+#info > .info-block > .info-input-block input {
+  line-height: 2rem;
+  border: solid 1.75px #000;
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  font-size: large;
+  padding-left: 0.5rem;
+}
+#info > .info-block > .info-input-block > label {
+  padding-left: 0.5rem;
+}
+#habilidades {
+  max-width: 30rem;
+}
+#habilidades > table {
+  border-collapse: collapse;
+}
+#habilidades > table th {
+  font-size: 0.75rem;
+}
+#habilidades > table tr:not(:first-child) {
+  line-height: 3.5rem;
+}
+#habilidades > table tr:not(:last-child):not(:first-child) {
+  border-bottom: 1px solid #808080;
+  line-height: 3.5rem;
+}
+#habilidades > table tr,
+#habilidades > table tr * {
+  text-align: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+#habilidades > table td:first-child {
+  font-family: Alagard;
+  font-weight: bold;
+}
+#habilidades > table input {
+  max-width: 3rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+#pv-grid {
+  display: grid;
+  height: fit-content;
+  width: fit-content;
+  grid-template-columns: auto auto auto auto;
+  margin: 0 auto;
+}
+#pv-grid * {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+#pv-grid .pv-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#pv-grid .pv-text {
+  font-family: Alagard;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#pv-grid input {
+  max-width: 10rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+#pv-grid > :not(:first-child) {
+  margin-left: 0.25rem;
+}
+#pv-grid > :not(:last-child) {
+  margin-right: 0.25rem;
+}
+#ca-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+  height: fit-content;
+  width: fit-content;
+  margin: 0 auto;
+}
+#ca-grid > div {
+  align-items: center;
+  justify-content: center;
+}
+#ca-grid .ca-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+  align-items: flex-end;
+}
+#ca-grid .ca-text {
+  font-family: Alagard;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#ca-grid input {
+  max-width: 3rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+#ca-grid #ca-total {
+  margin-left: 0.25rem;
+}
+#resistencias {
+  display: grid;
+  height: fit-content;
+  width: fit-content;
+  grid-template-columns: auto auto auto auto auto auto auto auto;
+  margin: 0 auto;
+}
+#resistencias > div {
+  align-items: center;
+  justify-content: center;
+}
+#resistencias .res-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: center;
+  align-items: flex-end;
+}
+#resistencias .res-text {
+  font-family: Alagard;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#resistencias input {
+  max-width: 3rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+}
+#resistencias .res-text,
+#resistencias input {
+  margin-bottom: 0.1rem;
+}
+#resistencias #res-fort-total,
+#resistencias #res-ref-total,
+#resistencias #res-von-total {
+  margin-left: 0.25rem;
+}
+#ataques {
+  width: fit-content;
+  margin: 0 auto;
+}
+#ataques * {
+  text-align: center;
+  align-items: center;
+}
+#ataques .ataq-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#ataques .ataq-text {
+  font-family: Alagard;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#ataques input {
+  max-width: 3rem;
+  font-size: 1.2rem;
+}
+
+/*Caixa de Pericias*/
+
+aside{
+  display: none;
+  padding: 0.5rem;
+  padding-top: 6rem;
+}
+
+#pericias {
+  border-collapse: collapse;
+  border: #808080 solid 1px;
+  border-top: none;
+}
+#pericias td,
+#pericias th {
+  width: fit-content;
+  text-align: center;
+}
+#pericias tr:not(:last-child) {
+  border-bottom: solid 1px #808080;
+}
+#pericias tr td {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+#pericias tr > td:nth-child(2) {
+  font-size: 0.75rem;
+  font-family: Alagard;
+  font-weight: bold;
+}
+#pericias .peri-header {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+#pericias .peri-text {
+  font-family: Alagard;
+  font-weight: bold;
+  font-size: 1rem;
+}
+#pericias input {
+  width: 3rem;
+  font-size: 1.2rem;
+}

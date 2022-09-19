@@ -1,0 +1,18 @@
+/* media queries */
+
+html {
+  font-size: 50%;
+}
+
+@media (max-width: 1180px) {
+  main{
+    padding-left: 1rem;
+  }
+  .wrap-login {
+    margin-right: 0px;
+  }
+}
+
+@media (max-width: 350px) {
+  
+}
